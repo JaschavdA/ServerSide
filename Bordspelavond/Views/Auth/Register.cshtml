@@ -1,0 +1,67 @@
+﻿@model Domain.Models.WebsiteUser
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>Spel informatie</title>
+    <script src="https://kit.fontawesome.com/601a2a72d3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="http://fonts.cdnfonts.com/css/broadway" rel="stylesheet">
+</head>
+<body>
+<div class="LoginRegisterWrapper">
+    <form asp-action="Register" method="post">
+        <div class="form-group">
+            <label asp-for="FirstName">Voornaam</label>
+                <input asp-for="FirstName" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label asp-for="LastName">Achternaam</label>
+                <input asp-for="LastName" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email">Email</label>
+            <input asp-for="Email" class="form-control" type="email" required>
+        </div>
+        <div class="form-group">
+            <label for="date">Geboortedatum</label>
+            <input type="date" class="form-control" name="birthday" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Wachtwoord</label>
+            <input type="password" class="form-control" name="password" required>
+        </div>
+        <div class="form-group">
+            <label for="repeatpassword">Herhaal wachtwoord</label>
+            <input type="password" class="form-control" name="repeatpassword" required>
+        </div>
+        <div class="form-group">
+            <input asp-for="IsVegetarian" class="form-check-input"/>
+            <label asp-for="IsVegetarian" class="form-check-label">Ben je vegetarisch?</label>
+        </div>
+        <div class="form-group">
+            <input asp-for="NutAllergy" class="form-check-input"/>
+            <label asp-for="NutAllergy" class="form-check-label">Heb je een notenallergie?</label>
+        </div>
+        <div class="form-group">
+            <input asp-for="LactoseIntolerant" class="form-check-input"/>
+                <label asp-for="LactoseIntolerant" class="form-check-label">Ben je lactose intolerant?</label>
+        </div>
+        <div class="form-group">
+            <input asp-for="AlcoholFree" class="form-check-input"/>
+            <label asp-for="AlcoholFree" class="form-check-label">Consumeer je geen alcohol?</label>
+        </div>
+        <div class="form-group">
+            <input type="checkbox" class="form-check-input" name="isOrganizer" value="true"/>
+            <label for="isOrganizer" class="form-check-label">Spelavond organizator?</label>
+        </div>
+            @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-primary">Registreren</button>
+    </form>
+        <h3 style="margin-top: 10px">Heb je al een account? Klik <a href="/Auth/Login">hier</a> om je in te loggen.</h3>
+</div>
+
+
+</body>

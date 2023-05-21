@@ -1,0 +1,63 @@
+﻿@using Domain.Models
+@model Domain.Models.BoardGame
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width"/>
+    <title>Spel informatie</title>
+    <script src="https://kit.fontawesome.com/601a2a72d3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/GameInfo.css"/>
+    <link href="http://fonts.cdnfonts.com/css/broadway" rel="stylesheet">
+
+
+</head>
+<body>
+<div id="page-container">
+    <div id="content-wrap">
+        @if (ViewBag.GameNightId != null)
+        {
+            <form action="/GameNight/Info/">
+                <input type="hidden" value="@ViewBag.GameNightId" name="gameNightId"/>
+                <button type="submit" class="btn btn-primary BackButton">Terug</button>
+            </form>
+        }
+        else
+        {
+            <form action="/BoardGame/Index/">
+                <button type="submit" class="btn btn-primary BackButton">Terug</button>
+            </form>
+        }
+
+
+
+        <img src="data:@ViewBag.Picture;base64,@ViewBag.Picture" style="max-width: 500px"/>
+        <div class="GameInfoWrapper" style="max-width: 500px">
+            <h2>@Model.Name</h2>
+            <h4>Omschrijving: @Model.Description</h4>
+            <h4>Genre: @Model.Genre</h4>
+            <h4>18+:
+                @{
+                    if (@Model.Is18Plus)
+                    {
+                        <i class="fa-sharp fa-solid fa-circle-check"></i>
+                    }
+                    else
+                    {
+                        <i class="fa-sharp fa-solid fa-circle-xmark"></i>
+                    }
+                }
+            </h4>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+</html>
+

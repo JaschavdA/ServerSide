@@ -1,0 +1,139 @@
+﻿@model Domain.Models.GameNight
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>Spel informatie</title>
+    <script src="https://kit.fontawesome.com/601a2a72d3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/GameNightInfo.css"/>
+    <link href="http://fonts.cdnfonts.com/css/broadway" rel="stylesheet">
+</head>
+<body>
+<div id="page-container">
+        <div id="content-wrap">
+            <div class="row">
+                <div class="col">
+                    <div class="InfoWrapper">
+                        <h2>Bordspelavond</h2>
+                        <h4>Organisator: @Model.Organizer.FirstName @Model.Organizer.LastName</h4>
+                        <h4>Datum: @Model.DateTime</h4>
+                        <h4>Adress: @Model.Address.Street @Model.Address.HouseNumber</h4>
+                        <h4>Postcode: @Model.Address.PostalCode</h4>
+                        <h4>Stad: @Model.Address.City</h4>
+                        <h4>Maximum deelneemers: @Model.MaxNumberOfPlayers</h4>
+                        <h4>Vegetarische snacks:
+                            @if (Model.VegetarianSnacks)
+                            {
+                                <i class="fa-sharp fa-solid fa-check true"></i>
+                            }
+                            else
+                            {
+                                <i class="fa-sharp fa-solid fa-xmark false"></i>
+                            }
+                        </h4>
+                        <h4>Lactosevrije snacks:
+                            @if (Model.LactoseFreeSnacks)
+                            {
+                                <i class="fa-sharp fa-solid fa-check true"></i>
+                            }
+                            else
+                            {
+                                <i class="fa-sharp fa-solid fa-xmark false"></i>
+                            }
+                        </h4>
+                        <h4>Notenvrije snacks:
+                            @if (Model.NutFreeSnacks)
+                            {
+                                <i class="fa-sharp fa-solid fa-check true"></i>
+                            }
+                            else
+                            {
+                                <i class="fa-sharp fa-solid fa-xmark false"></i>
+                            }
+                        </h4>
+                        <h4>Alcoholvrije snacks/dranken:
+                            @if (Model.AlcoholFreeDrinks)
+                            {
+                                <i class="fa-sharp fa-solid fa-check true"></i>
+                            }
+                            else
+                            {
+                                <i class="fa-sharp fa-solid fa-xmark false"></i>
+                            }
+                        </h4>
+                        @if(@ViewBag.IsSignedUpForGameNight == true){
+                            <form asp-action="DeleteSignUp" method="post">
+                                <input type="hidden" value="@Model.Id" name="gameNightId"/>
+                                <input type="hidden" value="Home" name="controller"/>
+                                <input type="hidden" value="Index" name="action"/>
+                                <button type="submit" class="btn btn-primary SignUpButton">Afmelden</button>
+                            </form>
+                        } else {
+                            <form asp-action="GameNightSignUpHelper" method="get">
+                                <input type="hidden" value="@Model.Id" name="gameNightId" />
+                                <button type="submit" class="btn btn-primary SignUpButton">Aanmelden</button>
+                            </form>
+                        }
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="InfoWrapper">
+                        <h2>Deze mensen zijn er:</h2>
+                        <ul>
+                            @foreach (var p in Model.Participants)
+                            {
+                                <li>
+                                    <h4>
+                                        @p.FirstName @p.LastName
+                                    </h4>
+                                </li>
+                            }
+                        </ul>
+                        
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="InfoWrapper">
+                        <h2>Gespeelde games</h2>
+                        @foreach (var g in Model.Games)
+                        {
+                            <h4>
+                                @g.Name:
+                                <form action="/BoardGame/GameInfo" method="get">
+                                    <input type="hidden" value="@g.Id" name="gameId"/>
+                                    <input type="hidden" value="@Model.Id" name="gameNightId"/>
+                                    <button class="btn btn-primary GameButton">Meer info</button>
+                                </form>
+                                
+                            </h4>
+                        }
+
+                    </div>
+                    <div class="InfoWrapper">
+                        <h2>Snacks</h2>
+                        @if (Model.Food != null)
+                        {
+                            @foreach (var s in Model.Food)
+                            {
+                                <form action="GameNightSnackInfo">
+                                    <input type="hidden" value="@Model.Id" name="gameNightId"/>
+                                    <input type="hidden" value="@s.Id" name="foodId"/>
+                                    <h4>@s.Name: <button type="submit" class="btn btn-primary GameButton">Meer info</button></h4>
+                                </form>
+                                
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

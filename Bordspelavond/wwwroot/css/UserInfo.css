@@ -1,0 +1,47 @@
+﻿.FormWrapper {
+    border: solid;
+    background: #fcfaf5;
+    box-shadow: 0.5em 0.5em 0.5em darkgray;
+}
+
+.card {
+    border: solid;
+    background: #fcfaf5;
+    border-radius: 10px;
+    border-color: #DB5346;
+}
+.card-text {
+    margin: 2px;
+}
+
+.CardButton {
+    background: #553fe8;
+    color: white;
+    border-radius: 5px;
+    min-width: 50%;
+}
+
+.row {
+    margin-bottom: 5ex;
+}
+
+.true {
+    color: green;
+}
+
+.false {
+    color: red;
+}
+
+h2 {
+    font-family: 'Broadway', sans-serif;
+}
+
+h5 {
+    font-family: 'Broadway', sans-serif;
+}
+
+* {
+    font-size: 100%;
+    font-family: 'Tahoma', sans-serif;
+}

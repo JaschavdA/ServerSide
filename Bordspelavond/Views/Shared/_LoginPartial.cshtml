@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Bordspelavond.IdentityObject
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+    AppUser user = @UserManager.GetUserAsync(this.User).Result;
+    
+    <li class="nav-item">
+            <a id="manage" class="nav-link text-white" title="Manage">Hallo @user.FirstName @user.LastName!</a>
+    </li>
+    <li class="nav-item">
+            <form class="form-inline text-white" action="/Auth/Logout">
+                <button id="logout" type="submit" class="nav-link btn btn-link text-white">Logout</button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+            <form action="/Auth/Login" class="form-inline text-white">
+                <button type="submit" class="nav-link btn btn-link text-white">Login</button>
+        </form>
+    </li>
+    <li class="nav-item">
+            <form action="/Auth/Register" class="form-inline text-white">
+                <button type="submit" class="nav-link btn btn-link text-white">Register</button>
+        </form>
+    </li>
+}
+</ul>

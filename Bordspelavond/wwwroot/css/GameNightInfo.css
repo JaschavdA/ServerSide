@@ -1,0 +1,53 @@
+﻿.SignUpButton {
+    width: 50%;
+    background-color: #553fe8;
+    border-radius: 5px;
+    color: white;
+}
+
+.GameButton {
+    background-color: #553fe8;
+    border-radius: 5px;
+    color: white;
+}
+
+.GameButton:hover {
+    color: white;
+    background-color: blue;
+}
+
+.SignUpButton:hover {
+    color: white;
+    background-color: blue;
+}
+
+
+.InfoWrapper {
+    border: solid;
+    border-color: #e852f5;
+    padding: 10px;
+    border-radius: 30px;
+    background-color: #fcfaf5;
+    margin-bottom: 10px;
+    box-shadow: 0.5em 0.5em 0.5em darkgray;
+}
+.false > i {
+    color: red;
+}
+
+.true > i{
+    color: green;
+}
+
+h2 {
+    font-family: 'Broadway', sans-serif;
+}
+
+h5 {
+    font-family: 'Broadway', sans-serif;
+}
+
+* {
+    font-size: 100%;
+    font-family: 'Tahoma', sans-serif;
+}

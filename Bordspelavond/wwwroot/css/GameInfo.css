@@ -1,0 +1,45 @@
+﻿.GameInfoWrapper {
+    border: solid;
+    border-radius: 30px;
+    border-color: #DB5346;
+    padding: 10px;
+    width: 50%;
+    box-shadow: 0.5em 0.5em 0.5em darkgray;
+}
+
+img {
+    border-radius: 30px;
+    width: 50%;
+    margin-bottom: 10px;
+    box-shadow: 0.5em 0.5em 0.5em darkgray;
+}
+
+.BackButton {
+    background-color: #553fe8;
+    border-radius: 5px;
+    color: white;
+    width: 25%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.BackButton:hover {
+    color: white;
+    background-color: blue;
+}
+
+h2 {
+    font-family: 'Broadway', sans-serif;
+}
+
+h5 {
+    font-family: 'Broadway', sans-serif;
+}
+
+* {
+    font-size: 100%;
+    font-family: 'Tahoma', sans-serif;
+}
+
+
+

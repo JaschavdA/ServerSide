@@ -1,0 +1,71 @@
+﻿@using Domain.Models
+@model Domain.Models.BoardGame
+@{
+    ViewData["Title"] = "Spel toevoegen";
+    
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/site.css"/>
+    <link href="http://fonts.cdnfonts.com/css/broadway" rel="stylesheet">
+
+</head>
+<body>
+<div id="page-container">
+    <div id="content-wrap">
+        <div class="FormWrapper FormWrapperCreateGame">
+            <form asp-action="AddGame" method="post" enctype="multipart/form-data" class="w-90 p-3">
+                <h2>Spel toevoegen</h2>
+                <div class="form-group">
+                    <label asp-for="Name">Naam:</label>
+                    <input asp-for="Name" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description">Omschrijving:</label>
+                    <input asp-for="Description" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Genre">Genre:</label>
+                    <select asp-for="Genre" asp-items="Html.GetEnumSelectList<Domain.Models.GameGenres>()" class="form-select">
+
+                    </select>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="TypeOfGame">Type spel:</label>
+                    <input asp-for="TypeOfGame" class="form-control"/>
+                </div>
+                @*<div class="form-group">
+                    <label asp-for="ImageUrl">Afbeelding URL:</label>
+                        <input asp-for="ImageUrl" class="form-control" />
+                </div>*@
+
+                <div class="form-group">
+                    <label for="pic" class="control-label">Afbeelding</label>
+                    <input type="file" id="img" name="pic" accept="image/*" required>
+                    <span asp-validation-for="Picture" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="FormCheckWrapper">
+                        <div class="form-check">
+                            <input asp-for="Is18Plus" class="form-check-input"/>
+                            <label asp-for="Is18Plus" class="form-check-label">Is 18+:</label>
+                        </div>
+                    </div>
+
+                </div>
+                <button type="submit" class="btn btn-primary FormButtonCreateGame">Opslaan</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</body>

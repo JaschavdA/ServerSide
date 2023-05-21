@@ -1,0 +1,42 @@
+﻿.SnackInfoWrapper {
+    border: solid;
+    border-color: #EBC209;
+    border-radius: 30px;
+    background-color: #fcfaf5;
+    padding: 10px;
+    width: fit-content;
+    box-shadow: 0.5em 0.5em 0.5em darkgray;
+}
+
+.false {
+    color: red;
+}
+
+.true {
+    color: green;
+}
+
+.InfoBtn{
+    background-color: #553fe8;
+    border-radius: 5px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.InfoBtn:hover {
+    color: white;
+    background-color: blue;
+}
+
+h2 {
+    font-family: 'Broadway', sans-serif;
+}
+
+h5 {
+    font-family: 'Broadway', sans-serif;
+}
+
+* {
+    font-size: 100%;
+    font-family: 'Tahoma', sans-serif;
+}

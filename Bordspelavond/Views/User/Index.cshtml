@@ -1,0 +1,148 @@
+﻿@using Domain.Models
+@using System.Security.Claims
+@using Bordspelavond.IdentityObject
+@using Microsoft.AspNetCore.Identity
+@model IEnumerable<GameNight>
+@inject SignInManager<AppUser> SignInManager
+
+@{
+    ViewData["Title"] = "Mijn Gegevens";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="https://kit.fontawesome.com/601a2a72d3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/UserInfo.css" />
+    <link href="http://fonts.cdnfonts.com/css/microsoft-sans-serif" rel="stylesheet">
+    <link href="http://fonts.cdnfonts.com/css/broadway" rel="stylesheet">
+
+</head>
+<body>
+    <div id="page-container">
+        <div id="content-wrap">
+            <div class="row">
+                @if (User.HasClaim("Organizer", "Organizer"))
+                {
+                    <div class="col FormWrapper" style="margin: 5px">
+                        <h2>Mijn organisaties</h2>
+                        @foreach (GameNight gn in ViewBag.Organisations)
+                        {
+                            <div class="card" style="margin-bottom:  5px">
+                                <div class="card-body">
+                                    <h5 class="card-title">Spelavond</h5>
+                                    <p class="card-text">Locatie: @gn.Address.Street @gn.Address.HouseNumber</p>
+                                    <p class="card-text">Max spelers: @gn.MaxNumberOfPlayers</p>
+                                    @if (gn.Is18Plus)
+                                    {
+                                        <p class="card-text">18+: <i class="fa-sharp fa-solid fa-circle-check"></i></p>
+                                    }
+                                    <p class="card-text">Datum: @gn.DateTime.Date.ToString().Split(" ")[0]</p>
+                                    <p class="card-text">Tijdstip: @gn.DateTime.TimeOfDay</p>
+                                    <div class="row">
+                                        <form action="/GameNight/Info">
+                                            <input type="hidden" value="@gn.Id" name="gameNightId" />
+                                            <button type="submit" class="btn-primary CardButton">Meer informatie</button>
+                                        </form>
+                                        @if (gn.Participants.Count < 1)
+                                        {
+                                            <form asp-controller="GameNight" asp-action="EditGameNight" method="get" class="col-sm">
+                                                <input type="hidden" value="@gn.Id" name="gameNightId"/>
+                                                <button type="submit" class="btn-primary CardButton">Aanpassen</button>
+                                            </form>
+                                        }
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                
+                <div class="col FormWrapper" style="margin: 5px">
+                    <h2>Mijn gegevens</h2>
+                    <h3>Naam: @ViewBag.User.FirstName @ViewBag.User.LastName</h3>
+                    <h3>Email: @ViewBag.User.Email</h3>
+                    <h3>Vegetarisch:
+                        @if (@ViewBag.User.IsVegetarian)
+                        {
+                            <i class="fa-sharp fa-solid fa-check true"></i>
+                        }
+                        else
+                        {
+                            <i class="fa-sharp fa-solid fa-xmark false"></i>
+                        }
+                    </h3>
+                    <h3>Lactose intolerant:
+                        @if (@ViewBag.User.LactoseIntolerant)
+                        {
+                            <i class="fa-sharp fa-solid fa-check true"></i>
+                        }
+                        else
+                        {
+                            <i class="fa-sharp fa-solid fa-xmark false"></i>
+                        }
+                    </h3>
+                    <h3>Notenalergie:
+                        @if (@ViewBag.User.NutAllergy)
+                        {
+                            <i class="fa-sharp fa-solid fa-check true"></i>
+                        }
+                        else
+                        {
+                            <i class="fa-sharp fa-solid fa-xmark false"></i>
+                        }
+                    </h3>
+                    <h3>Drinkt geen alcohol:
+                        @if (@ViewBag.User.AlcoholFree)
+                        {
+                            <i class="fa-sharp fa-solid fa-check true"></i>
+                        }
+                        else
+                        {
+                            <i class="fa-sharp fa-solid fa-xmark false"></i>
+                        }
+                    </h3>
+                </div>
+                
+                <div class="col FormWrapper" style="margin: 5px">
+
+                    <h2>Mijn Aanmeldingen</h2>
+                    @foreach (var gn in Model)
+                    {
+                        <div class="card" style="margin-bottom:  5px">
+
+                            <div class="card-body">
+                                <h5 class="card-title">Spelavond</h5>
+                                <p class="card-text">Locatie: @gn.Address.Street @gn.Address.HouseNumber</p>
+                                <p class="card-text">Max spelers: @gn.MaxNumberOfPlayers</p>
+                                @if (gn.Is18Plus)
+                                {
+                                    <p class="card-text">18+: <i class="fa-sharp fa-solid fa-circle-check"></i></p>
+                                }
+                                <p class="card-text">Datum: @gn.DateTime.Date.ToString().Split(" ")[0]</p>
+                                <p class="card-text">Tijdstip: @gn.DateTime.TimeOfDay</p>
+                                <form action="/GameNight/Info">
+                                    <input type="hidden" value="@gn.Id" name="gameNightId" />
+                                    <button type="submit" class="btn-primary CardButton">Meer informatie</button>
+                                </form>
+                                <form action="/GameNight/DeleteSignUp" method="post">
+                                    <input type="hidden" value="@gn.Id" name="gameNightId"/>
+                                    <input type="hidden" value="Index" name="action"/>
+                                    <input type="hidden" value="Home" name="controller"/>
+                                    <button type="submit" class="btn CardButton">Afmelden</button>
+                                </form>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+    

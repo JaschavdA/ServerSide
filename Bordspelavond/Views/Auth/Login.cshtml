@@ -1,0 +1,31 @@
+﻿<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="http://fonts.cdnfonts.com/css/broadway" rel="stylesheet">
+
+</head>
+
+<body>
+<div class="LoginRegisterWrapper">
+    <form action="/Auth/Login" method="post">
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" name="email">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password">
+        </div>
+            @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-primary" style="margin-top: 10px">Login</button>
+    </form>
+
+    <h3 style="margin-top: 10px">Nog geen account? Klik <a href="/Auth/Register">hier</a> om een account aan te maken!</h3>
+</div>
+
+
+</body>
+
+

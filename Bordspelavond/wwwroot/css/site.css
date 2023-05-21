@@ -1,0 +1,149 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+        font-family: 'Tahoma', sans-serif;
+    }
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+
+
+/*Found at: https://www.freecodecamp.org/news/how-to-keep-your-footer-where-it-belongs-59c6aa05c59c/ to keep footer from interfering with forms*/
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 2.5rem; /* Footer height */
+    margin: 0px;
+}
+
+#footer {
+    position: absolute;
+    border-block-color: red;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem; /* Footer height */
+}
+
+.FormButton{
+    margin-top: 1em;
+}
+
+
+
+.FormCheckWrapper {
+    margin-top: 1em;
+}
+
+
+.FormWrapper {
+    border: solid;
+    background: #fcfaf5;
+    box-shadow: 0.5em 0.5em 0.5em darkgray;
+}
+
+
+.FormWrapperCreateGameNight {
+    
+    border-color: #F59331;
+    border-radius: 30px;
+    width: 50%;
+    
+}
+
+.FormWrapperCreateGame {
+    border-color: #e852f5;
+    border-radius: 30px;
+    width: 50%;
+}
+
+.FormButtonCreateGame {
+    background: #553fe8;
+    width: 150px;
+    color: white;
+}
+
+.FormButtonCreateGame:hover {
+    color: white !important;
+}
+
+.TableWrapperAddGame {
+    border: solid;
+    border-radius: 30px;
+    border-color: #EBC209;
+    margin-bottom: 1em;
+}
+
+.TableHeadAddGamesToGameNight {
+    border-radius: 30px;
+}
+
+.TableWrapperRemoveGame {
+    border: solid;
+    border-radius: 30px;
+    border-color: #DB5346;
+    margin-bottom: 1em;
+}
+
+.TableRemoveGames > * {
+    border-radius: 30px;
+}
+
+.InlineForm {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.InlineForm > button {
+    min-width: 200px;
+}
+
+
+.test > * {
+    background: #553fe8 !important;
+    color: white;
+}
+
+.logo {
+    margin-right: 1em;
+    border-radius: 5px;
+}
+
+.inline {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.LoginRegisterWrapper {
+    width: 50%;
+    align-self: center;
+    align-content: center;
+}
+
+h2 {
+    font-family: 'Broadway', sans-serif;
+}
+
+h5 {
+    font-family: 'Broadway', sans-serif;
+}
+
+* {
+    font-size: 100%;
+    font-family: 'Tahoma', sans-serif;
+}

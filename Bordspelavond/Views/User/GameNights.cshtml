@@ -1,0 +1,61 @@
+﻿@using Domain.Models
+@model IEnumerable<GameNight>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>Spel informatie</title>
+    <script src="https://kit.fontawesome.com/601a2a72d3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+
+    <div id="page-container">
+        <div id="content-wrap">
+            <h2>Spelavonden</h2>
+            <div class="TableWrapperAddGame FormWrapper">
+                <table class="table table-striped table-borderless TableAddGames">
+                    <thead class="TableHeadRemoveGamesFromGameNight">
+                        <tr>
+                            <th>Locatie</th>
+                            <th>Tijdstip</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var gn in Model)
+                        {
+                            <tr>
+                                <td>@gn.Address.Street @gn.Address.HouseNumber, @gn.Address.PostalCode, @gn.Address.City</td>
+                                <td>@gn.DateTime</td>
+                                <td>
+                                    <form action="/GameNight/Info" class="inline">
+                                        <input type="hidden" value="@gn.Id" name="gameNightId" />
+                                        <button type="submit" class="btn FormButtonCreateGame btn-primary">Meer informatie</button>
+                                    </form>
+                                    @if (gn.Participants.Count < 1)
+                                    {
+                                        <div class="inline">
+                                            <form action="/GameNight/EditGameNight" class="inline" method="get">
+                                                <input type="hidden" value="@gn.Id" name="gameNightId" />
+                                                <button type="submit" class="btn FormButtonCreateGame btn-primary">Aanpassen</button>
+                                            </form>
+                                            <form action="/GameNight/DeleteGameNight" method="post" class="inline">
+                                                <input type="hidden" value="@gn.Id" name="gameNightId" />
+                                                <input type="hidden" value="User" name="controller"/>
+                                                <input type="hidden" value="GameNights" name="action"/>
+                                                <button type="submit" class="btn FormButtonCreateGame btn-primary">Verwijderen</button>
+                                            </form>
+                                        </div>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>

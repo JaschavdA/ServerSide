@@ -1,0 +1,83 @@
+﻿.CardSignUp {
+    max-width: 25%;
+    margin-right: 5px;
+    border-radius: 10px;
+    border-color: #DB5346 !important;
+}
+
+.FormWrapper {
+    border: solid;
+    background: #fcfaf5;
+    box-shadow: 0.5em 0.5em 0.5em darkgray;
+    margin: 5px;
+}
+
+
+.card-text {
+    margin: 2px;
+}
+
+.CardButton {
+    background: #553fe8;
+    color: white;
+    border-radius: 5px;
+    min-width: 50%;
+}
+
+.row {
+    margin-bottom: 5ex;
+}
+
+.OrganizedBoardGameNights {
+    border: solid;
+    border-radius: 10px;
+    padding: 50px;
+    max-width: 50%;
+    margin-right: 10px;
+    border-color: #F59331;
+}
+
+    .OrganizedBoardGameNights > .card {
+        border-color: black;
+        border: solid;
+        border-radius: 5px;
+    }
+
+.SignedUpBoardGameNights {
+    border: solid;
+    border-radius: 10px;
+    padding: 50px;
+    max-width: 50%;
+    margin-right: 10px;
+    border-color: #EBC209;
+}
+
+.UserData {
+    border: solid;
+    border-radius: 10px;
+    padding: 50px;
+    max-width: 50%;
+    margin-right: 10px;
+    border-color: #e852f5;
+}
+
+.OrganizedBoardGameNights > .card {
+    border-color: black;
+    border: solid;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+
+h2 {
+    font-family: 'Broadway', sans-serif;
+}
+
+h5 {
+    font-family: 'Broadway', sans-serif;
+}
+
+* {
+    font-size: 100%;
+    font-family: 'Tahoma', sans-serif;
+}

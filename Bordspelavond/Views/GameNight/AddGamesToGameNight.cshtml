@@ -1,0 +1,108 @@
+﻿@using Domain.Models
+@model IEnumerable<BoardGame>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>Spel informatie</title>
+    <script src="https://kit.fontawesome.com/601a2a72d3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="http://fonts.cdnfonts.com/css/broadway" rel="stylesheet">
+</head>
+<body>
+<div id="page-container">
+    <div id="content-wrap">
+        <h2>Bordspellen toevoegen</h2>
+            <div class="TableWrapperAddGame FormWrapper">
+            <table class="table table-striped table-borderless TableAddGames">
+                <thead class="TableHeadAddGamesToGameNight">
+                <tr>
+                    <th>Naam</th>
+                    <th>Genre</th>
+                    <th>Type spel</th>
+                    <th>ID</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @{
+                    foreach (var g in Model)
+                    {
+                        <tr>
+                            <td>@g.Name</td>
+                            <td>@g.Genre</td>
+                            <td>@g.TypeOfGame</td>
+                            <td>@g.Id</td>
+                            <td>
+                                <form action="/GameNight/AddGamesToGameNight" method="post">
+                                    <input type="hidden" value="@g.Id" name="gameId"/>
+                                    <input type="hidden" value="@ViewBag.GameNight.Id" name="gameNightId"/>
+                                    <button type="submit" class="btn FormButtonCreateGame btn-primary" style="width: 200px">Spel Toevoegen</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+                </tbody>
+            </table>
+        </div>
+        <h2>Bordspellen Verwijderen</h2>
+
+        <div class="TableWrapperRemoveGame FormWrapper">
+            <table class="table table-striped table-borderless TableRemoveGames">
+                <thead class="TableHeadRemoveGamesFromGameNight">
+                <tr>
+                    <th>Naam</th>
+                    <th>Genre</th>
+                    <th>Type spel</th>
+                    <th>ID</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @{
+                    GameNight night = ViewBag.GameNight;
+                    if (night.Games != null)
+                    {
+                        foreach (var g in ViewBag.GameNight.Games)
+                        {
+                            <tr>
+                                <td>@g.Name</td>
+                                <td>@g.Genre</td>
+                                <td>@g.TypeOfGame</td>
+                                <td>@g.Id</td>
+                                <td>
+                                    <form action="/GameNight/DeleteGameFromGameNight" method="post">
+                                        <input type="hidden" value="@g.Id" name="gameId"/>
+                                        <input type="hidden" value="@ViewBag.GameNight.Id" name="gameNightId"/>
+                                                <button type="submit" class="btn FormButtonCreateGame btn-primary">Spel Verwijderen</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+
+                </tbody>
+            </table>
+        </div>
+     
+            <form action="/Home/Index" class="InlineForm">
+                <button type="submit" class="btn FormButtonCreateGame btn-primary">Klaar</button>
+            </form>
+
+            <form action="/GameNight/DeleteGameNight" method="post" class="InlineForm">
+                <input type="hidden" value="@ViewBag.GameNight.Id" name="gameNightId"/>
+                <input type="hidden" value="Home" name="controller"/>
+                <input type="hidden" value="Index" name="action"/>
+                <button type="submit" class="btn FormButtonCreateGame btn-primary">Spelavond Verwijderen</button>
+                </form>
+     
+        
+
+    </div>
+</div>
+</body>
+

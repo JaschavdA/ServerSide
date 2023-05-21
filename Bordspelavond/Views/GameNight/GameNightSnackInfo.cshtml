@@ -1,0 +1,70 @@
+﻿@model Domain.Models.Food
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>Snack informatie</title>
+    <script src="https://kit.fontawesome.com/601a2a72d3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/GameNightSnackInfo.css" />
+    <link href="http://fonts.cdnfonts.com/css/broadway" rel="stylesheet">
+</head>
+<body>
+<div id="page-container">
+    <div id="content-wrap">
+        <form action="Info">
+            <input type="hidden" value="@Model.GameNight.Id" name="gameNightId"/>
+            <button type="submit" class="btn btn-primary InfoBtn">Terug</button>
+        </form>
+        <div class="SnackInfoWrapper">
+            <h2>@Model.Name info</h2>
+            <h4>Naam: @Model.Name</h4>
+            <h4>Vegetarisch:
+                @if (Model.IsVegetarian)
+                {
+                    <i class="fa-sharp fa-solid fa-check true"></i>
+                }
+                else
+                {
+                    <i class="fa-sharp fa-solid fa-xmark false"></i>
+                }
+            </h4>
+            <h4>Lactosevrij:
+                @if (Model.IsLactoseFree)
+                {
+                    <i class="fa-sharp fa-solid fa-check true"></i>
+                }
+                else
+                {
+                    <i class="fa-sharp fa-solid fa-xmark false"></i>
+                }
+            </h4>
+            <h4>Notenvrij:
+                @if (Model.IsNutFree)
+                {
+                    <i class="fa-sharp fa-solid fa-check true"></i>
+                }
+                else
+                {
+                    <i class="fa-sharp fa-solid fa-xmark false"></i>
+                }
+            </h4>
+            <h4>Alcoholvrij:
+                @if (Model.IsAlcoholFree)
+                {
+                    <i class="fa-sharp fa-solid fa-check true"></i>
+                }
+                else
+                {
+                    <i class="fa-sharp fa-solid fa-xmark false"></i>
+                }
+            </h4>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
